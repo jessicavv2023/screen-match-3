@@ -8,6 +8,8 @@ import com.alura.screenmatch.modelos.Serie;
 import com.alura.screenmatch.modelos.Titulo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class PrincipalConListas {
     public static void main(String[] args) {
@@ -70,9 +72,21 @@ peliculaLoveintheBigCity.evalua(10);
                 /* Pelicula pelicula = (Pelicula) items;*/
                  System.out.println(pelicula.getClasificacion());
              }
-
-
          }
+
+         ArrayList <String> listaDeActores = new  ArrayList <> ();
+         listaDeActores.add("Lisa");
+         listaDeActores.add("Rose");
+         listaDeActores.add("Ana");
+
+
+        System.out.println("Lista no ordenada "+listaDeActores);
+        Collections.sort(listaDeActores);
+        System.out.println("Lista ordenada "+ listaDeActores);
+        Collections.sort(lista);
+        System.out.println("lista ordena de titulos " + lista);
+
+
 
         System.out.println("Tamaño de la lista: " + lista.size());
         System.out.println("La primera pelicula es: " + lista.get(0).getNombre());
