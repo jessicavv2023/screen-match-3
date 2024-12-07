@@ -10,6 +10,7 @@ import com.alura.screenmatch.modelos.Titulo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class PrincipalConListas {
     public static void main(String[] args) {
@@ -86,7 +87,10 @@ peliculaLoveintheBigCity.evalua(10);
         Collections.sort(lista);
         System.out.println("lista ordena de titulos " + lista);
 
-
+        System.out.println("*****");
+        lista.sort(Comparator.comparing(Titulo::getFechaDeLanzamiento));
+        System.out.println(lista);
+        System.out.println("*****");
 
         System.out.println("Tamaño de la lista: " + lista.size());
         System.out.println("La primera pelicula es: " + lista.get(0).getNombre());
