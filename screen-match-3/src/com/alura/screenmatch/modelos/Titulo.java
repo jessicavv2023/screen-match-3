@@ -1,5 +1,6 @@
 package com.alura.screenmatch.modelos;
 
+import com.alura.screenmatch.excepcion.ErrorEnConversionDeDuracionExpection;
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo  implements Comparable <Titulo> {
@@ -22,7 +23,15 @@ public class Titulo  implements Comparable <Titulo> {
     public Titulo(TituloOmdb miTituloOmbd) {
         this.nombre= miTituloOmbd.title();
         this.fechaDeLanzamiento = Integer.valueOf(miTituloOmbd.year());
-        this.duracionEnMinutos = Integer.valueOf(miTituloOmbd.runtime().substring(0,2));
+        if (miTituloOmbd.runtime().contains("N/A")){
+            // si mi titulo contiene N/A significa que si ocurre una excpetion
+            throw  new ErrorEnConversionDeDuracionExpection("No pude convertir la duracion"
+                    + "porque contiene un N/A");
+        }
+
+
+            // se usa el .replace para remplazar el tiempo por si solo tiene dos digitos el espacio que dada lo remplaza por nada para uqe lo pueda convertir
+        this.duracionEnMinutos = Integer.valueOf(miTituloOmbd.runtime().substring(0,3).replace("", ""));
     }
 
     public String getNombre() {
