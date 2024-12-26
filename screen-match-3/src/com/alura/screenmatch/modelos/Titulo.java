@@ -28,10 +28,16 @@ public class Titulo  implements Comparable <Titulo> {
             throw  new ErrorEnConversionDeDuracionExpection("No pude convertir la duracion"
                     + "porque contiene un N/A");
         }
-
+        try {
+            // Extrae solo los números del runtime, ignorando "min" u otras palabras
+            String runtimeStr = miTituloOmbd.runtime().split(" ")[0]; // Toma solo la parte numérica
+            this.duracionEnMinutos = Integer.valueOf(runtimeStr);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new ErrorEnConversionDeDuracionExpection("No pude convertir la duración porque el formato es inválido: " + miTituloOmbd.runtime());
+        }
 
             // se usa el .replace para remplazar el tiempo por si solo tiene dos digitos el espacio que dada lo remplaza por nada para uqe lo pueda convertir
-        this.duracionEnMinutos = Integer.valueOf(miTituloOmbd.runtime().substring(0,3).replace("", ""));
+       // this.duracionEnMinutos = Integer.valueOf(miTituloOmbd.runtime().substring(0,3).replace("", ""));
     }
 
     public String getNombre() {
@@ -92,8 +98,8 @@ public class Titulo  implements Comparable <Titulo> {
 
     @Override
     public String toString (){
-        return "nombre" + nombre + "/" +
-                "fecha de lanzamiento" + fechaDeLanzamiento + "/" +
-                "tiempo " + duracionEnMinutos;
+        return "****** nombre" + nombre  +
+                "fecha de lanzamiento" + fechaDeLanzamiento +
+                "tiempo " + duracionEnMinutos + "*****";
     }
 }
